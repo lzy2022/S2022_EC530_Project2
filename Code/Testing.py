@@ -1,19 +1,12 @@
 from project2_exceptions import PassWordNotMatch, UserIdNotExist
 from pw_check import varify_user
 from module_func import new_user
+from db_info import DB_acc_info
 
 
 def main():
-    result = False
-    try:
-        result = varify_user(1, 'admin')
-    except UserIdNotExist:
-        print('id not exist')
-    except PassWordNotMatch:
-        print('incorrect pw')
-    if result == True:
-        print("Hello!")
-    new_user('a', 'b', 0, 0, 0, 'default')
-
+    db_ac = DB_acc_info('./DB/Project_2.db')
+    db_ac.user_login(1, 'admin')
+    db_ac.run_module_func('Administrative', 'Add User')
 if __name__ == "__main__":
     main()
