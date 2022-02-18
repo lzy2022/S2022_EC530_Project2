@@ -11,4 +11,3 @@ bs4
 
 matplotlib
 
-sqlite3
