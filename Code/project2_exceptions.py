@@ -10,3 +10,6 @@ class UserIdNotExist(Error):
 
 class PassWordNotMatch(Error):
     pass
+
+class RoleNotExist(Error):
+    pass

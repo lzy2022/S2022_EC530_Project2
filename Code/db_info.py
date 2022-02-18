@@ -84,7 +84,7 @@ class DB_acc_info:
                     (self.function_dic[module_name]).append(row[0])
             con.close()
             
-    def run_module_func(self, module_name, func_name):
+    def run_module_func(self, module_name, func_name, func_args):
         # ==================quick fix
         if self.state == False:
             print("Please Login First")
@@ -99,5 +99,16 @@ class DB_acc_info:
                 print("No Access to the function")
                 # ==================quick 
             else:
-                call_func(db_addr, module_name, func_name, [])
-            
+                call_func(db_addr, module_name, func_name, func_args)
+    
+    def get_module_list(self):
+        return self.module_list
+    
+    def get_func_dic(self):
+        return self.function_dic
+    
+    def get_user_name(self):
+        return [self.current_uname_f, self.current_uname_l]
+    
+    def get_user_role(self):
+        return self.current_urole
