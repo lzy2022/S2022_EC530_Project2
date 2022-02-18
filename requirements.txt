@@ -5,9 +5,3 @@ flake8
 mypy
 pytest >= 4.0
 
-PyPDF2
-
-bs4
-
-matplotlib
-
