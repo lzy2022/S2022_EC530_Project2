@@ -14,7 +14,8 @@ def varify_user(u_id, pw):
     # check if the id not exist
     if user == None:
         raise UserIdNotExist
-    if user['pw'] != pw:
+    if user[1] != pw:
         raise PassWordNotMatch
+    con.close()
     return True
     
