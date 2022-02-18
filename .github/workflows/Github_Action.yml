@@ -28,7 +28,7 @@ jobs:
 
       - name: Test with pytest
         run: |
-          cp -r ./Code/DB/Project_2.db ./Code/UnitTests/DB/
+          cp -r ./Code/DB/Project_2.db ./Code/UnitTests/DB
           cd ./Code/UnitTests
           pytest 
           cd ..
