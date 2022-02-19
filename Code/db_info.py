@@ -111,3 +111,6 @@ class DB_acc_info:
     
     def get_user_role(self):
         return self.current_urole
+    
+    def get_user_id(self):
+        return self.current_uid
