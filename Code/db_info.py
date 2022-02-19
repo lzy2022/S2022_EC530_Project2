@@ -1,7 +1,6 @@
 # EC530 Project 2 By Zhiyuan Liu
 # This file contains the function and constants about the data base
 from os.path import exists
-from sre_parse import State
 from project2_exceptions import UserIdNotExist, PassWordNotMatch
 import sqlite3
 from module_func import call_func
