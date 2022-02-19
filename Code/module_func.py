@@ -1,7 +1,5 @@
 # EC530 Project 2 By Zhiyuan Liu
 # This file contains the module functions
-from asyncio.windows_events import NULL
-from re import U
 import sqlite3
 from project2_exceptions import PassWordNotMatch, RoleNotExist, UserIdNotExist
 
