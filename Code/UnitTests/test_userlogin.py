@@ -26,7 +26,7 @@ def test_adminlogin_2():
         assert 1 == 1
     except PassWordNotMatch:
         assert 0 == 1
-    if db_acc.get_user_id != 0:
+    if db_acc.get_user_id() != 0:
         assert 0 == 1
         
 def test_adminlogin_3():
@@ -37,5 +37,5 @@ def test_adminlogin_3():
         assert 0 == 1
     except PassWordNotMatch:
         assert 1 == 1
-    if db_acc.get_user_id != 0:
+    if db_acc.get_user_id() != 0:
         assert 0 == 1
