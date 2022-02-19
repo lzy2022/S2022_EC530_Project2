@@ -6,37 +6,34 @@ current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
 sys.path.append(parent)
 from project2_exceptions import UserIdNotExist, PassWordNotMatch
-from pw_check import varify_user
+from db_info import DB_acc_info
 
 def test_adminlogin_1():
-    result = False
+    db_acc = DB_acc_info('./DB/Project_2.db')
     try:
-        result = varify_user(1, 'admin')
+        db_acc.user_login(1, 'admin')
     except UserIdNotExist:
         assert 0 == 1
     except PassWordNotMatch:
         assert 0 == 1
-    if result == True:
-        assert 1 == 1
+    assert 1 == 1
 
 def test_adminlogin_2():
-    result = False
+    db_acc = DB_acc_info('./DB/Project_2.db')
     try:
-        result = varify_user(99, 'admin')
+        db_acc.user_login(100, 'admin')
     except UserIdNotExist:
         assert 1 == 1
     except PassWordNotMatch:
         assert 0 == 1
-    if result == True:
-        assert 0 == 1
+    assert 0 == 1
         
 def test_adminlogin_3():
-    result = False
+    db_acc = DB_acc_info('./DB/Project_2.db')
     try:
-        result = varify_user(1, 'adminnnnnnnn')
+        db_acc.user_login(1, 'adminnnnnnnn')
     except UserIdNotExist:
         assert 0 == 1
     except PassWordNotMatch:
         assert 1 == 1
-    if result == True:
-        assert 0 == 1
+    assert 0 == 1

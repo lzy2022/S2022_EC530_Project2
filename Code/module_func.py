@@ -13,12 +13,6 @@ def new_user(db_addr, f_n, l_n, b_y, b_m, b_d, pw):
     cur.execute("INSERT INTO user_pw(user_id, pw) VALUES (?, ?)", (cur.lastrowid, pw,))
     con.commit()
     con.close()
-
-def admin_add_user(db_addr):
-    new_user_first_name = input("Please Enter the First Name of the New User:\n")
-    new_user_last_name = input("Please Enter the Last Name of the New User:\n")
-    new_user_pw = input("Please Enter the Password of the New User:\n")
-    new_user(db_addr, new_user_first_name, new_user_last_name, 0, 0, 0, new_user_pw)
     
 def change_user_role(db_addr, u_id, role_name):
     con = sqlite3.connect(db_addr)
@@ -38,17 +32,14 @@ def change_user_role(db_addr, u_id, role_name):
     con.commit()
     con.close()
     
-def admin_change_user_role(db_addr):
-    u_id = input("Please Enter the User ID of the User being Changed:\n")
-    role_name = input("Please Enter the New Role:\n")
-    change_user_role(db_addr, u_id, role_name)
-    
+def admin_add_device(db_addr):
+    pass
 
 def call_func(db_addr, module_name, func_name, func_args):
     if module_name == 'Administrative' and func_name == 'Add User':
-        admin_add_user(db_addr)
+        new_user(db_addr, func_args[0], func_args[1], func_args[2], func_args[3], func_args[4], func_args[5])
     if module_name == 'Administrative' and func_name == 'Change User Role':
-        admin_change_user_role(db_addr)
+        change_user_role(db_addr, func_args[0], func_args[1])
 
                     
 
