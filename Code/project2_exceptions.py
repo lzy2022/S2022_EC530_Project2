@@ -8,8 +8,14 @@ class Error(Exception):
 class UserIdNotExist(Error):
     pass
 
+class DeviceIdNotExist(Error):
+    pass
+
 class PassWordNotMatch(Error):
     pass
 
 class RoleNotExist(Error):
+    pass
+
+class NoAdmissionToAccessDevice(Error):
     pass

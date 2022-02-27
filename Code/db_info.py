@@ -33,8 +33,10 @@ class DB_acc_info:
         user = cur.fetchone()
         # check if the id not exist
         if user == None:
+            con.close()
             raise UserIdNotExist
         if user[1] != pw:
+            con.close()
             raise PassWordNotMatch
         con.close()
         return True

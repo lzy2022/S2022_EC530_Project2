@@ -7,7 +7,7 @@ from text_UI_interface import text_UI_add_user, text_UI_change_user_role
 
 def main():
     db_ac = DB_acc_info('./DB/Project_2.db')
-    db_ac.user_login(8, 'default')
+    db_ac.user_login(1, 'admin')
     text_UI_add_user(db_ac)
     text_UI_change_user_role(db_ac)
 
