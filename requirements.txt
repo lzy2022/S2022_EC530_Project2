@@ -5,3 +5,5 @@ flake8
 mypy
 pytest >= 4.0
 
+flask-restful
+

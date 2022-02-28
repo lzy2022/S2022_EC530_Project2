@@ -1,7 +1,8 @@
 # EC530 Project 2 By Zhiyuan Liu
 # This file contains the function and constants about the data base
+from asyncio.windows_events import NULL
 from os.path import exists
-from project2_exceptions import UserIdNotExist, PassWordNotMatch
+from project2_exceptions import RequireUserLogin, UserIdNotExist, PassWordNotMatch
 import sqlite3
 from module_func import call_func
 
@@ -85,6 +86,17 @@ class DB_acc_info:
                     (self.function_dic[module_name]).append(row[0])
             con.close()
             
+    def user_logout(self):
+        if self.state == False:
+            raise RequireUserLogin
+        self.current_uid = 0
+        self.current_uname_f = ''
+        self.current_uname_l = ''
+        self.current_urole = ''
+        self.module_list = []
+        self.function_dic = {}
+        self.state = False
+            
     def run_module_func(self, module_name, func_name, func_args):
         # ==================quick fix
         if self.state == False:
@@ -100,7 +112,9 @@ class DB_acc_info:
                 print("No Access to the function")
                 # ==================quick 
             else:
-                call_func(db_addr, module_name, func_name, func_args)
+                buf = call_func(db_addr, module_name, func_name, func_args)
+                if buf is not NULL:
+                    return buf
     
     def get_module_list(self):
         return self.module_list

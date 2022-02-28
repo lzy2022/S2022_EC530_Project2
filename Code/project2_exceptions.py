@@ -19,3 +19,6 @@ class RoleNotExist(Error):
 
 class NoAdmissionToAccessDevice(Error):
     pass
+
+class RequireUserLogin(Error):
+    pass

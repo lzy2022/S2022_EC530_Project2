@@ -1,5 +1,6 @@
 # EC530 Project 2 By Zhiyuan Liu
 # This file contains the module functions
+from asyncio.windows_events import NULL
 from copy import deepcopy
 import sqlite3
 from tabnanny import check
@@ -199,6 +200,21 @@ def call_func(db_addr, module_name, func_name, func_args):
         new_user(db_addr, func_args[0], func_args[1], func_args[2], func_args[3], func_args[4], func_args[5])
     if module_name == 'Administrative' and func_name == 'Change User Role':
         change_user_role(db_addr, func_args[0], func_args[1])
-
+    if module_name == 'Device' and func_name == 'Add Device':
+        add_device(db_addr, func_args[0], func_args[1], func_args[2])
+    if module_name == 'Device' and func_name == 'Check Device Parameter':
+        return get_device_para(db_addr, func_args[0])
+    if module_name == 'Device' and func_name == 'Add Device Parameter':
+        add_device_para(db_addr, func_args[0], func_args[1], func_args[2])
+    if module_name == 'Device' and func_name == 'Assign Device':
+        assign_device(db_addr, func_args[0], func_args[1], func_args[2])
+    if module_name == 'Device' and func_name == 'Upload Test Record':
+        add_record(db_addr, func_args[0], func_args[1], func_args[2], func_args[3])
+    if module_name == 'Device' and func_name == 'View Patient Test Records':
+        return get_user_record(db_addr, func_args[0])
+    if module_name == 'Device' and func_name == 'View Your Test Records':
+        return get_user_record(db_addr, func_args[0])
+    
+    return NULL
                     
 
