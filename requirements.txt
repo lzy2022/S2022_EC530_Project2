@@ -5,5 +5,7 @@ flake8
 mypy
 pytest >= 4.0
 
+requests
+flask
 flask-restful
 

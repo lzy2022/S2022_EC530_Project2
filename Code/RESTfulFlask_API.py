@@ -1,0 +1,14 @@
+from flask import Flask
+from flask_restful import Api, Resource, reqparse
+
+app = Flask(__name__)
+api = Api(app)
+
+class H(Resource):
+    def get(self):
+        return {'msg': "Hello"}
+    
+api.add_resource(H, "/hello")
+
+if __name__ == "__main__":
+    app.run(debug=True)
