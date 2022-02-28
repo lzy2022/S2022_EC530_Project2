@@ -1,6 +1,5 @@
 # EC530 Project 2 By Zhiyuan Liu
 # This file contains the function and constants about the data base
-from asyncio.windows_events import NULL
 from os.path import exists
 from project2_exceptions import RequireUserLogin, UserIdNotExist, PassWordNotMatch
 import sqlite3
