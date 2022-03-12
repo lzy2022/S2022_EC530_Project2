@@ -1,6 +1,7 @@
 # EC530 Project 2 By Zhiyuan Liu
 # This file contains the function and constants about the data base
 from os.path import exists
+from project2_exceptions import NoAccessToModuleOrFunction
 from project2_exceptions import RequireUserLogin, UserIdNotExist, PassWordNotMatch
 import sqlite3
 from module_func import call_func
@@ -99,20 +100,20 @@ class DB_acc_info:
     def run_module_func(self, module_name, func_name, func_args):
         # ==================quick fix
         if self.state == False:
-            print("Please Login First")
+            raise RequireUserLogin
         # ==================quick fix
         else:
             if module_name not in self.module_list:
                 # ==================quick fix
-                print("No Access to the module")
+                raise NoAccessToModuleOrFunction
                 # ==================quick 
             elif func_name not in self.function_dic.get(module_name):
                 # ==================quick fix
-                print("No Access to the function")
+                raise NoAccessToModuleOrFunction
                 # ==================quick 
             else:
                 buf = call_func(db_addr, module_name, func_name, func_args)
-                if buf is not NULL:
+                if buf is not None:
                     return buf
     
     def get_module_list(self):
