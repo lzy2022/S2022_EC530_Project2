@@ -13,6 +13,7 @@ def new_user(db_addr, f_n, l_n, b_y, b_m, b_d, pw):
     cur.execute("INSERT INTO user_pw(user_id, pw) VALUES (?, ?)", (cur.lastrowid, pw,))
     con.commit()
     con.close()
+    return {'message':'New User Added'}
     
 def check_user(db_addr, u_id):
     con = sqlite3.connect(db_addr)
@@ -57,6 +58,29 @@ def change_user_role(db_addr, u_id, role_name):
     cur.execute("INSERT INTO user_role(user_id, role) VALUES (?, ?)", (u_id, role_name,))
     con.commit()
     con.close()
+    return {'message':'Role Changed'}
+
+def delete_user(db_addr, u_id):
+    if check_user(db_addr, u_id) == False:
+        raise UserIdNotExist
+    con = sqlite3.connect(db_addr)
+    cur = con.cursor()
+    cur.execute("DELETE FROM users WHERE user_id = ?", (u_id,))
+    con.close()
+    return {'message':'User Deleted'}
+
+def get_user_list(db_addr):
+    con = sqlite3.connect(db_addr)
+    cur = con.cursor()
+    cur.execute("SELECT user_id, first_name, last_name FROM users")
+    u = cur.fetchall()
+    con.close()
+    user_list = []
+    for row in u:
+        user_list.append({'user_id':row[0],
+                      'first_name':row[1],
+                      'last_name':row[2]})
+    return user_list
     
 def add_device(db_addr, d_name, m_name, state):
     con = sqlite3.connect(db_addr)
@@ -71,7 +95,7 @@ def add_device(db_addr, d_name, m_name, state):
                 (d_name, 0, 0, 0, m_name, state,))
     con.commit()
     con.close()
-    pass
+    return {'message':'Device Added'}
 
 def assign_device(db_addr, d_id, u_id, comment):
     con = sqlite3.connect(db_addr)
@@ -100,6 +124,7 @@ def assign_device(db_addr, d_id, u_id, comment):
     cur.execute("INSERT INTO device_user (device_id, user_id, comment) VALUES (?, ?, ?)",(d_id, u_id, comment,))
     con.commit()
     con.close()
+    return {'message':'Device Assigned'}
 
 def add_device_para(db_addr, d_id, para_name, unit):
     if check_device(db_addr, d_id) == False:
@@ -109,7 +134,7 @@ def add_device_para(db_addr, d_id, para_name, unit):
     cur.execute("INSERT INTO device_parameter (device_id, parameter_name, unit) VALUES (?, ?, ?)",(d_id, para_name, unit,))
     con.commit()
     con.close()
-    pass
+    return {'message':'Parameter Added'}
 
 def get_device_para(db_addr, d_id):
     if check_device(db_addr, d_id) == False:
@@ -123,6 +148,27 @@ def get_device_para(db_addr, d_id):
     for row in u:
         para[row[1]] = row[2]
     return para
+
+def clear_device_para(db_addr, d_id):
+    if check_device(db_addr, d_id) == False:
+        raise DeviceIdNotExist
+    con = sqlite3.connect(db_addr)
+    cur = con.cursor()
+    cur.execute("DELETE FROM device_parameter WHERE device_id = ?", (d_id,))
+    con.close()
+    return {'message':'Parameter Cleared'}
+
+def get_device_list(db_addr):
+    con = sqlite3.connect(db_addr)
+    cur = con.cursor()
+    cur.execute("SELECT device_id, device_name FROM device")
+    u = cur.fetchall()
+    con.close()
+    d_list = []
+    for row in u:
+        d_list.append({'device_id':row[0],
+                      'device_name':row[1]})
+    return d_list
 
 def add_record_entry(db_addr, r_id, para_name, data, unit):
     con = sqlite3.connect(db_addr)
@@ -166,6 +212,7 @@ def add_record(db_addr, u_id, d_id, record, comment):
     for para in record.keys():
         if para in device_para.keys():
             add_record_entry(db_addr, r_id, para, record[para], device_para[para])
+    return {'message':'Record Added'}, 201
             
 def get_user_record(db_addr, u_id):
     if check_user(db_addr, u_id) == False:
@@ -196,24 +243,32 @@ def get_user_record(db_addr, u_id):
     
 def call_func(db_addr, module_name, func_name, func_args):
     if module_name == 'Administrative' and func_name == 'Add User':
-        new_user(db_addr, func_args[0], func_args[1], func_args[2], func_args[3], func_args[4], func_args[5])
+        return new_user(db_addr, func_args[0], func_args[1], func_args[2], func_args[3], func_args[4], func_args[5])
     if module_name == 'Administrative' and func_name == 'Change User Role':
-        change_user_role(db_addr, func_args[0], func_args[1])
+        return change_user_role(db_addr, func_args[0], func_args[1])
+    if module_name == 'Administrative' and func_name == 'Delete User Info':
+        return delete_user(db_addr, func_args[0])
+    if module_name == 'Administrative' and func_name == 'Get User List':
+        return get_user_list(db_addr)
     if module_name == 'Device' and func_name == 'Add Device':
-        add_device(db_addr, func_args[0], func_args[1], func_args[2])
+        return add_device(db_addr, func_args[0], func_args[1], func_args[2])
+    if module_name == 'Device' and func_name == 'Get Device List':
+        return get_device_list(db_addr)
     if module_name == 'Device' and func_name == 'Check Device Parameter':
         return get_device_para(db_addr, func_args[0])
+    if module_name == 'Device' and func_name == 'Clear Device Parameter':
+        return clear_device_para(db_addr, func_args[0])
     if module_name == 'Device' and func_name == 'Add Device Parameter':
-        add_device_para(db_addr, func_args[0], func_args[1], func_args[2])
+        return add_device_para(db_addr, func_args[0], func_args[1], func_args[2])
     if module_name == 'Device' and func_name == 'Assign Device':
-        assign_device(db_addr, func_args[0], func_args[1], func_args[2])
+        return assign_device(db_addr, func_args[0], func_args[1], func_args[2])
     if module_name == 'Device' and func_name == 'Upload Test Record':
-        add_record(db_addr, func_args[0], func_args[1], func_args[2], func_args[3])
+        return add_record(db_addr, func_args[0], func_args[1], func_args[2], func_args[3])
     if module_name == 'Device' and func_name == 'View Patient Test Records':
         return get_user_record(db_addr, func_args[0])
     if module_name == 'Device' and func_name == 'View Your Test Records':
         return get_user_record(db_addr, func_args[0])
     
-    return NULL
+    return None
                     
 
