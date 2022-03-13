@@ -28,6 +28,7 @@ jobs:
 
       - name: Test with pytest
         run: |
+          nohup .\RESTfulFlask_API.py ./DB/Project_2.db &
           cd ./Code/UnitTests
           pytest 
           cd ..
