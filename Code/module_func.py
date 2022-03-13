@@ -5,6 +5,7 @@ import sqlite3
 from project2_exceptions import NoAccessToChatGroup
 from project2_exceptions import DeviceIdNotExist, NoAdmissionToAccessDevice, PassWordNotMatch, RoleNotExist, UserIdNotExist
 import datetime
+import json
 
 def new_user(db_addr, f_n, l_n, b_y, b_m, b_d, pw):
     con = sqlite3.connect(db_addr)
@@ -301,6 +302,8 @@ def create_chat_group(db_addr, u_id, g_name, g_id):
     con.commit()
     con.close()
     
+    return {'message':'Chat Group Created'}
+    
 
 def add_user_chat_group(db_addr, u_id_s, u_id_r, g_id):
     if check_user(db_addr, u_id_s) == False:
@@ -402,7 +405,8 @@ def call_func(db_addr, module_name, func_name, u_id, func_args):
     if module_name == 'Device' and func_name == 'Assign Device':
         return assign_device(db_addr, func_args[0], func_args[1], func_args[2])
     if module_name == 'Device' and func_name == 'Upload Test Record':
-        return add_record(db_addr, func_args[0], func_args[1], func_args[2], func_args[3])
+        print(func_args)
+        return add_record(db_addr, func_args[0], func_args[1], json.loads((func_args[2])), func_args[3])
     if module_name == 'Device' and func_name == 'View Patient Test Records':
         return get_user_record(db_addr, func_args[0])
     if module_name == 'Device' and func_name == 'View Your Test Records':
@@ -419,5 +423,5 @@ def call_func(db_addr, module_name, func_name, u_id, func_args):
     if module_name == 'Chat' and func_name == 'View Your Message':
         return view_user_msg(db_addr, u_id)
     if module_name == 'Chat' and func_name == 'View Group Message':
-        return view_group_msg(db_addr, u_id, func_args[1])
+        return view_group_msg(db_addr, u_id, func_args[0])
     return None
