@@ -31,7 +31,7 @@ jobs:
           cd ./Code
           chmod +x RESTfulFlask_API.py
           nohup ./RESTfulFlask_API.py ./DB/Project_2.db &
-          cd ./Code/UnitTests
+          cd ./UnitTests
           pytest 
           cd ..
           cd ..
