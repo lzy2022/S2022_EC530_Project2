@@ -6,13 +6,14 @@ from db_info import DB_acc_info
 import random
 import copy
 from project2_exceptions import Error
+import sys
 
 app = Flask(__name__)
 api = Api(app)
 
 db_addr = './DB/Project_2.db'
 
-db_ac = DB_acc_info(db_addr)
+db_ac = None
 
 login_args = reqparse.RequestParser()
 login_args.add_argument("u_id", type=int, help="Need user ID", required=True)
@@ -62,4 +63,7 @@ api.add_resource(User_Login, '/login')
 api.add_resource(Module_Function, '/moduleFunction/<string:module_name>/<string:function_name>')
 
 if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        db_addr = sys.argv[1]
+    db_ac = DB_acc_info(db_addr)
     app.run(debug=True)
