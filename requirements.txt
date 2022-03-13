@@ -5,8 +5,7 @@ flake8
 mypy
 pytest >= 4.0
 
-PyPDF2
+requests
+flask
+flask-restful
 
-bs4
-
-matplotlib
