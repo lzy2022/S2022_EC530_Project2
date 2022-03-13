@@ -39,3 +39,8 @@ class NoAccessToModuleOrFunction(Error):
     def msg(self):
         return 'NoAccessToModuleOrFunction'
     pass
+
+class NoAccessToChatGroup(Error):
+    def msg(self):
+        return 'NoAccessToChatGroup'
+    pass

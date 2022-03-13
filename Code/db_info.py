@@ -112,7 +112,7 @@ class DB_acc_info:
                 raise NoAccessToModuleOrFunction
                 # ==================quick 
             else:
-                buf = call_func(db_addr, module_name, func_name, func_args)
+                buf = call_func(db_addr, module_name, func_name, self.current_uid, func_args)
                 if buf is not None:
                     return buf
     

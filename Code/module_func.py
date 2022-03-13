@@ -2,8 +2,9 @@
 # This file contains the module functions
 from copy import deepcopy
 import sqlite3
-from tabnanny import check
+from project2_exceptions import NoAccessToChatGroup
 from project2_exceptions import DeviceIdNotExist, NoAdmissionToAccessDevice, PassWordNotMatch, RoleNotExist, UserIdNotExist
+import datetime
 
 def new_user(db_addr, f_n, l_n, b_y, b_m, b_d, pw):
     con = sqlite3.connect(db_addr)
@@ -66,6 +67,7 @@ def delete_user(db_addr, u_id):
     con = sqlite3.connect(db_addr)
     cur = con.cursor()
     cur.execute("DELETE FROM users WHERE user_id = ?", (u_id,))
+    con.commit()
     con.close()
     return {'message':'User Deleted'}
 
@@ -155,6 +157,7 @@ def clear_device_para(db_addr, d_id):
     con = sqlite3.connect(db_addr)
     cur = con.cursor()
     cur.execute("DELETE FROM device_parameter WHERE device_id = ?", (d_id,))
+    con.commit()
     con.close()
     return {'message':'Parameter Cleared'}
 
@@ -168,6 +171,22 @@ def get_device_list(db_addr):
     for row in u:
         d_list.append({'device_id':row[0],
                       'device_name':row[1]})
+    return d_list
+
+def get_user_device_list(db_addr, u_id):
+    if check_user(db_addr, u_id) == False:
+        raise UserIdNotExist
+    con = sqlite3.connect(db_addr)
+    cur = con.cursor()
+    cur.execute("SELECT device_id FROM device_user WHERE user_id = ?", (u_id,))
+    u = cur.fetchall()
+    d_list = []
+    for row in u:
+        cur.execute("SELECT device_name FROM device WHERE device_id = ?", (row[0],))
+        v = cur.fetchone()
+        d_list.append({'device_id':row[0],
+                      'device_name':v[0]})
+    con.close()
     return d_list
 
 def add_record_entry(db_addr, r_id, para_name, data, unit):
@@ -240,8 +259,127 @@ def get_user_record(db_addr, u_id):
         record_list.append(deepcopy(record))
     con.close()
     return record_list
+
+def check_user_chat_group(db_addr, u_id, g_id):
+    if check_user(db_addr, u_id) == False:
+        raise UserIdNotExist
+    con = sqlite3.connect(db_addr)
+    cur = con.cursor()
+    # check if admission exist
+    cur.execute("SELECT * FROM chat_group WHERE user_id = ? AND group_id = ?", (u_id, g_id,))
+    u = cur.fetchone()
+    con.close()
+    if u == None:
+        return False
+    return True
+
+def get_user_chat_group(db_addr, u_id):
+    if check_user(db_addr, u_id) == False:
+        raise UserIdNotExist
+    con = sqlite3.connect(db_addr)
+    cur = con.cursor()
+    cur.execute("SELECT group_id, group_name FROM chat_group WHERE user_id = ?", (u_id,))
+    u = cur.fetchall()
+    con.close()
+    g_list = []
+    for row in u:
+        g_list.append({'group_id': row[0], 'group_name': row[1]})
+    return g_list
+
+def create_chat_group(db_addr, u_id, g_name, g_id):
+    if check_user(db_addr, u_id) == False:
+        raise UserIdNotExist
+    con = sqlite3.connect(db_addr)
+    cur = con.cursor()
+    # check if admission exist
+    cur.execute("SELECT * FROM chat_group WHERE group_id = ?", (g_id,))
+    u = cur.fetchone()
+    if u != None:
+        con.close()
+        raise NoAccessToChatGroup
+    cur.execute("INSERT INTO chat_group (group_id, group_name, user_id) VALUES (?, ?, ?)",(g_id, g_name, u_id,))
+    con.commit()
+    con.close()
     
-def call_func(db_addr, module_name, func_name, func_args):
+
+def add_user_chat_group(db_addr, u_id_s, u_id_r, g_id):
+    if check_user(db_addr, u_id_s) == False:
+        raise UserIdNotExist
+    if check_user(db_addr, u_id_r) == False:
+        raise UserIdNotExist
+    if check_user_chat_group(db_addr, u_id_s, g_id) == False:
+        raise NoAccessToChatGroup
+    con = sqlite3.connect(db_addr)
+    cur = con.cursor()
+    cur.execute("SELECT group_name FROM chat_group WHERE group_id = ?", (g_id,))
+    u = cur.fetchone()
+    g_name = u[0]
+    cur.execute("INSERT INTO chat_group (group_id, group_name, user_id) VALUES (?, ?, ?)",(g_id, g_name, u_id_r,))
+    con.commit()
+    con.close()
+    
+    return {'message':'Added User to the Chat Group'}
+
+def remove_user_chat_group(db_addr, u_id_s, u_id_r, g_id):
+    if check_user(db_addr, u_id_s) == False:
+        raise UserIdNotExist
+    if check_user(db_addr, u_id_r) == False:
+        raise UserIdNotExist
+    if check_user_chat_group(db_addr, u_id_s, g_id) == False:
+        raise NoAccessToChatGroup
+    con = sqlite3.connect(db_addr)
+    cur = con.cursor()
+    cur.execute("DELETE FROM chat_group WHERE user_id = ? AND group_id = ?", (u_id_r, g_id,))
+    con.commit()
+    con.close()
+    
+    return {'message':'Removed User from the Chat Group'}
+
+def send_msg(db_addr, u_id_s, u_id_r, g_id, msg):
+    if check_user(db_addr, u_id_s) == False:
+        raise UserIdNotExist
+    if check_user(db_addr, u_id_r) == False and check_user_chat_group(db_addr, u_id_s, g_id) == False:
+        raise NoAccessToChatGroup
+    msg_time = datetime.datetime.now()
+    con = sqlite3.connect(db_addr)
+    cur = con.cursor()
+    cur.execute("INSERT INTO chat_msg (user_id_s, user_id_r, group_id, content, time) VALUES (?, ?, ?, ?, ?)",
+                (u_id_s, u_id_r, g_id, msg, msg_time,))
+    con.commit()
+    con.close()
+
+    return {'message':'Message Sent'}
+
+def view_user_msg(db_addr, u_id):
+    if check_user(db_addr, u_id) == False:
+        raise UserIdNotExist
+    con = sqlite3.connect(db_addr)
+    cur = con.cursor()
+    cur.execute("SELECT * FROM chat_msg WHERE user_id_r = ? ORDER BY time DESC", (u_id,))
+    u = cur.fetchall()
+    con.close()
+    msg_list = []
+    for row in u:
+        msg_list.append({'from': row[1], 'to': row[2], 'group': row[3], 'time': row[4], 'content': row[0]})
+    return msg_list
+
+def view_group_msg(db_addr,u_id, g_id):
+    if check_user(db_addr, u_id) == False:
+        raise UserIdNotExist
+    if check_user_chat_group(db_addr, u_id, g_id) == False:
+        raise NoAccessToChatGroup
+    con = sqlite3.connect(db_addr)
+    cur = con.cursor()
+    cur.execute("SELECT * FROM chat_msg WHERE group_id = ? ORDER BY time DESC", (g_id,))
+    u = cur.fetchall()
+    con.close()
+    msg_list = []
+    for row in u:
+        msg_list.append({'from': row[1], 'to': row[2], 'group': row[3], 'time': row[4], 'content': row[0]})
+    return msg_list
+    
+def call_func(db_addr, module_name, func_name, u_id, func_args):
+    # Administrative
     if module_name == 'Administrative' and func_name == 'Add User':
         return new_user(db_addr, func_args[0], func_args[1], func_args[2], func_args[3], func_args[4], func_args[5])
     if module_name == 'Administrative' and func_name == 'Change User Role':
@@ -250,6 +388,7 @@ def call_func(db_addr, module_name, func_name, func_args):
         return delete_user(db_addr, func_args[0])
     if module_name == 'Administrative' and func_name == 'Get User List':
         return get_user_list(db_addr)
+    # Device
     if module_name == 'Device' and func_name == 'Add Device':
         return add_device(db_addr, func_args[0], func_args[1], func_args[2])
     if module_name == 'Device' and func_name == 'Get Device List':
@@ -267,8 +406,18 @@ def call_func(db_addr, module_name, func_name, func_args):
     if module_name == 'Device' and func_name == 'View Patient Test Records':
         return get_user_record(db_addr, func_args[0])
     if module_name == 'Device' and func_name == 'View Your Test Records':
-        return get_user_record(db_addr, func_args[0])
-    
+        return get_user_record(db_addr, u_id)
+    # Chat
+    if module_name == 'Chat' and func_name == 'Create Chat Group':
+        return create_chat_group(db_addr, u_id, func_args[0], func_args[1])
+    if module_name == 'Chat' and func_name == 'Add User to Chat Group':
+        return add_user_chat_group(db_addr, u_id, func_args[0], func_args[1])
+    if module_name == 'Chat' and func_name == 'Remove User from Chat Group':
+        return remove_user_chat_group(db_addr, u_id, func_args[0], func_args[1])
+    if module_name == 'Chat' and func_name == 'Send Message':
+        return send_msg(db_addr, u_id, func_args[0], func_args[1], func_args[2])
+    if module_name == 'Chat' and func_name == 'View Your Message':
+        return view_user_msg(db_addr, u_id)
+    if module_name == 'Chat' and func_name == 'View Group Message':
+        return view_group_msg(db_addr, u_id, func_args[1])
     return None
-                    
-
