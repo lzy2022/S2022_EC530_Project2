@@ -42,6 +42,15 @@
    db_setup.py would set up a database framework by downloading a .db file from the DB folder in this github repositories, the downloaded file would be saved in [database location] (url: https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Code/DB/Project_2_back.db). Users only need to run db_setup.py when they are initializing the sever for the first time. To launch the sever, just enter:
    
         .\RESTfulFlask_API.py [database location]
-        
 
+The framework of the database contains the all the charts & basic infomations to run the sever. A default user account in saved the framework:
+        user_id: 1
+        pass_word: admin
+        name(f&l): Admin Admin
+        role: Admin
+        
+## Database Structure
+
+        
+## Functions of RESTful API & Request Formates
      
