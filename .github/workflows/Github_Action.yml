@@ -29,6 +29,7 @@ jobs:
       - name: Test with pytest
         run: |
           cd ./Code/UnitTests
+          chmod +x db_setup.py
           ./db_setup.py Project_2_test.db
           pytest 
           cd ..
