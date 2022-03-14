@@ -82,7 +82,11 @@ The framework of the database contains the all the charts & basic infomations to
         Log chat messages (sender_user_id, receiver_user_id, receiver_group_id)
         
 ## Functions of RESTful API & Request Formates
-The following parts contain formates and functions that can be called from the front-end side using http requests.
+The following parts contain formates and functions that can be called from the front-end side using http requests. Users need to import the following python modules:
+
+        import requests
+        import json
+        
 ### 1. Login Request:
 Back-end RESTful API implimentation of the Login Request:
 
@@ -114,3 +118,43 @@ http login request can be done using the following request:
         response = requests.get(BASE + "login", {'u_id': [user_id], 'pw': [user_password]})
         
 [response] containse the essential information for the front-end to intialize the local session, including user's first/last name, role, accessibility to modules and functions.
+
+### 2. Function Request (Interact with the Database):
+Back-end RESTful API implimentation of the function requests:
+
+        m_f_args = reqparse.RequestParser()
+        m_f_args.add_argument("u_id", type=int, help="Need user ID", required=True)
+        m_f_args.add_argument("pw", type=str, help="Need password", required=True)
+        m_f_args.add_argument("para", help="Need module name", action="append")
+
+        class Module_Function(Resource):
+            def get(self, module_name, function_name):
+                db_ac = DB_acc_info(db_addr)
+                args = m_f_args.parse_args()
+                try:
+                    db_ac.user_login(args['u_id'], args['pw'])
+                except:
+                    return {'message':'Login failed!'}, 400
+                f_para = copy.deepcopy(args['para'])
+                try:
+                    result = db_ac.run_module_func(module_name, function_name, f_para)
+                except Error as err:
+                    return {'message': err.msg()}, 400
+                db_ac.user_logout()
+                return result
+
+        api.add_resource(Module_Function, '/moduleFunction/<string:module_name>/<string:function_name>')
+
+All the functions interact with the databse can use the following request formate:
+ 
+        BASE = "http://127.0.0.1:5000/"
+        response = requests.get(BASE + "moduleFunction/[module_name]/[function_name]", {'u_id': [user_id], 'pw': [user_password]
+                                                                                        ,'para': [list_of_parameters_passed_to_function]})
+                                                                                        
+For example, to create a new user with name [First Last], birth date [1/1/1000] and password set to be ['PW1'], use the following request:
+
+        response = requests.get(BASE + "moduleFunction/Administrative/Add User", {'u_id': 1, 'pw': 'admin'
+                                                                                        ,'para': ['First', 'Last', 1000, 1, 1, 'PW1']})
+                                                                                
+All the available functions are implemented in S2022_EC530_Project2/Code/module_func.py, fowlloing are the module/function names and the required parameters for each function. 
+                                              
