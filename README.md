@@ -82,4 +82,35 @@ The framework of the database contains the all the charts & basic infomations to
         Log chat messages (sender_user_id, receiver_user_id, receiver_group_id)
         
 ## Functions of RESTful API & Request Formates
-     
+The following parts contain formates and functions that can be called from the front-end side using http requests.
+### 1. Login Request:
+Back-end RESTful API implimentation of the Login Request:
+
+        login_args = reqparse.RequestParser()
+        login_args.add_argument("u_id", type=int, help="Need user ID", required=True)
+        login_args.add_argument("pw", type=str, help="Need password", required=True)
+
+        class User_Login(Resource):
+            def get(self):
+                db_ac = DB_acc_info(db_addr)
+                args = login_args.parse_args()
+                try:
+                    db_ac.user_login(args['u_id'], args['pw'])
+                except:
+                    return {'message':'Login failed!'}, 400
+                user_name = db_ac.get_user_name()
+                user_role = db_ac.get_user_role()
+                user_module = db_ac.get_module_list()
+                user_function = db_ac.get_func_dic()
+                db_ac.user_logout()
+                return {'message':'Loged in', 'user_name': user_name, 'user_role': user_role, 
+                        'user_module': user_module, 'user_function':user_function}, 200
+                        
+        api.add_resource(User_Login, '/login')
+                        
+http login request can be done using the following request: 
+
+        BASE = "http://127.0.0.1:5000/"
+        response = requests.get(BASE + "login", {'u_id': [user_id], 'pw': [user_password]})
+        
+[response] containse the essential information for the front-end to intialize the local session, including user's first/last name, role, accessibility to modules and functions.
