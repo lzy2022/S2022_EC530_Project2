@@ -35,5 +35,5 @@ def test_get_parameterlist():
     db_ac = DB_acc_info(db_addr)
     db_ac.user_login(1, 'admin')
     result = db_ac.run_module_func('Device', 'Check Device Parameter', [1])
-    assert result[0]['Weight'] == 'Kg'
+    assert result['Weight'] == 'Kg'
     pass
