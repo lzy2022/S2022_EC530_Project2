@@ -40,6 +40,7 @@
         .\db_setup.py [database location]    # only needed for the first time, [database location] should also contains the filename for the database
         .\RESTfulFlask_API.py [database location]
    db_setup.py would set up a database framework by downloading a .db file from the DB folder in this github repositories, the downloaded file would be saved in [database location] (url: https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Code/DB/Project_2_back.db). Users only need to run db_setup.py when they are initializing the sever for the first time. To launch the sever, just enter:
+   
         .\RESTfulFlask_API.py [database location]
         
 
