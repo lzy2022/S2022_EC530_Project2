@@ -39,7 +39,7 @@
 ## Setting up Back-end Sever
         .\db_setup.py [database location]    # only needed for the first time, [database location] should also contains the filename for the database
         .\RESTfulFlask_API.py [database location]
-   db_setup.py would set up a database framework by downloading a .db file from the DB folder in this github repositories, the downloaded file would be saved in [database location] (url: https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Code/DB/Project_2_back.db). Users only need to run db_setup.py when they are initializing the sever for the first time. To launch the sever, just enter:
+   db_setup.py would set up a database framework by downloading a .db file from S2022_EC530_Project2/Code/DB/Project_2_back.db in this github repositories, the downloaded file would be saved in [database location] (url: https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Code/DB/Project_2_back.db). Users only need to run db_setup.py when they are initializing the sever for the first time. To launch the sever, just enter:
    
         .\RESTfulFlask_API.py [database location]
 
@@ -49,8 +49,21 @@ The framework of the database contains the all the charts & basic infomations to
         name(f&l): Admin Admin
         role: Admin
         
-## Database Structure
-
+## Database Structure (Tables)
+### users:
+        Contains user_id, user's first/last name, birth date, account creating date
+### user_pw:
+        Contains user_id, user's login password
+### roles:
+        Contains the list of user's roles in this database, now supporting [Admin], [Doctor], [Nurse] and [Patient]
+### user_role:
+        Contains user_id and the corresponding role name. A user can have more than 1 role.
+### modules:
+        Contains module_id and module_name of the modules, now supporting [Administrative], [Device] and [Chat]
+### role_module:
+        Log different roles' accessibility to each module 
+        
+     
         
 ## Functions of RESTful API & Request Formates
      
