@@ -65,6 +65,7 @@ def test_upload_record():
     db_ac.user_login(2, 'PW1')
     result = db_ac.run_module_func('Device', 'Upload Test Record', [2, 1,
                                                                     json.dumps({'Weight':60}), 'Test Record'])
+    print(result)
     assert result['message'] == 'Record Added'
     pass
 
