@@ -63,24 +63,23 @@ The framework of the database contains the all the charts & basic infomations to
 #### role_module:
         Log different roles' accessibility to each module 
 #### role_module_func:
-
+        Log different roles' accessibility to each function (functions implemented in S2022_EC530_Project2/Code/module_func.py)
 #### device:
-
+        Contains device_id, device_name, created date and maker information
 #### device_maker:
-
+        Contains device maker's information
 #### device_parameter:
-
+        Contains acceptable parameters of different devices (device can have more than 1 parameter)
 #### device_user:
-
+        Log user's accessibility to different device (match user_id & device_id)
 #### record:
-
+        Log user's device record (created date, device_id, user_id, special comments). Record entries/data are in another chart 
 #### record_entries:
-
+        Match record_id and record_entries (parameter_name, data & unit). Record may have more than 1 entries
 #### chat_group:
-
+        Contains users accessibility to different group chat (user_id & group_id)
 #### chat_msg:
-        
-     
+        Log chat messages (sender_user_id, receiver_user_id, receiver_group_id)
         
 ## Functions of RESTful API & Request Formates
      
