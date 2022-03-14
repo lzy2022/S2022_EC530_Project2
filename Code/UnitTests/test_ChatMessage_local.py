@@ -56,7 +56,7 @@ def test_send_groupmsg():
 def test_receive_groupmsg():
     db_ac = DB_acc_info(db_addr)
     db_ac.user_login(1, 'admin')
-    result = db_ac.run_module_func('Chat', 'View Group Message', [])
+    result = db_ac.run_module_func('Chat', 'View Group Message', [123])
     assert result[0]['content'] == 'Test Group Message'
     pass
 
