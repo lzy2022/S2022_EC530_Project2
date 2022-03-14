@@ -2,26 +2,26 @@
 
 ## Github Structure
 ### Top Level
- - .github
- - Code (*The Main Body of the Project)
- - Flake8_Styles
- - requirements.txt
- - README.md
+    - .github
+    - Code (*The Main Body of the Project)
+    - Flake8_Styles
+    - requirements.txt
+    - README.md
 #### Code 
-  - DB
+    - DB
 
       Database back-ups of the project
-  - UnitTests
+    - UnitTests
       
       UnitTests folder contains the Github Action tests for the project
-  - UnitTests_Online
+    - UnitTests_Online
       
       Tests in UnitTests_Online need to set up a remote sever
-  - RESTfulFlask_API.py
-  - db_info,py
-  - db_setup.py
-  - module_func.py
-  - project2_exceptions.py
+    - RESTfulFlask_API.py
+    - db_info,py
+    - db_setup.py
+    - module_func.py
+    - project2_exceptions.py
 
 ## Api File Structure
   ### RESTfulFlask_API.py
