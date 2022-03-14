@@ -18,7 +18,22 @@ def test_add_user():
     pass
 
 def test_change_role():
+    db_ac = DB_acc_info(db_addr)
+    db_ac.user_login(1, 'admin')
+    result = db_ac.run_module_func('Administrative', 'Change User Role', [2, 'Patient'])
+    assert result['message'] == 'Role Changed'
     pass
 
 def test_delete_user():
+    db_ac = DB_acc_info(db_addr)
+    db_ac.user_login(1, 'admin')
+    result = db_ac.run_module_func('Administrative', 'Delete User Info', [2])
+    assert result['message'] == 'User Deleted'
+    pass
+
+def test_get_userlist():
+    db_ac = DB_acc_info(db_addr)
+    db_ac.user_login(1, 'admin')
+    result = db_ac.run_module_func('Administrative', 'Get User List', [])
+    assert result[0]['first_name'] == 'Admin'
     pass
