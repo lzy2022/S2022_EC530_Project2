@@ -7,6 +7,7 @@ parent = os.path.dirname(current)
 sys.path.append(parent)
 
 from db_info import DB_acc_info
+import json
 
 db_addr = './Project_2_test.db'
 
