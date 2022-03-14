@@ -50,35 +50,35 @@ The framework of the database contains the all the charts & basic infomations to
         role: Admin
         
 ## Database Structure (Tables)
-### users:
+#### users:
         Contains user_id, user's first/last name, birth date, account creating date
-### user_pw:
+#### user_pw:
         Contains user_id, user's login password
-### roles:
+#### roles:
         Contains the list of user's roles in this database, now supporting [Admin], [Doctor], [Nurse] and [Patient]
-### user_role:
+#### user_role:
         Contains user_id and the corresponding role name. A user can have more than 1 role.
-### modules:
+#### modules:
         Contains module_id and module_name of the modules, now supporting [Administrative], [Device] and [Chat]
-### role_module:
+#### role_module:
         Log different roles' accessibility to each module 
-### role_module_func:
+#### role_module_func:
 
-### device:
+#### device:
 
-### device_maker:
+#### device_maker:
 
-### device_parameter:
+#### device_parameter:
 
-### device_user:
+#### device_user:
 
-### record:
+#### record:
 
-### record_entries:
+#### record_entries:
 
-### chat_group:
+#### chat_group:
 
-### chat_msg:
+#### chat_msg:
         
      
         
