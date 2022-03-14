@@ -45,3 +45,24 @@ def test_adduser_chatgroup():
     result = db_ac.run_module_func('Chat', 'Add User to Chat Group', [2, 123])
     assert result['message'] == 'Added User to the Chat Group'
     pass
+
+def test_send_groupmsg():
+    db_ac = DB_acc_info(db_addr)
+    db_ac.user_login(2, 'PW1')
+    result = db_ac.run_module_func('Chat', 'Send Message', [-1, 123, 'Test Group Message'])
+    assert result['message'] == 'Message Sent'
+    pass
+
+def test_receive_groupmsg():
+    db_ac = DB_acc_info(db_addr)
+    db_ac.user_login(1, 'admin')
+    result = db_ac.run_module_func('Chat', 'View Group Message', [])
+    assert result[0]['content'] == 'Test Group Message'
+    pass
+
+def test_remove_groupuser():
+    db_ac = DB_acc_info(db_addr)
+    db_ac.user_login(1, 'admin')
+    result = db_ac.run_module_func('Chat', 'Remove User from Chat Group', [2, 123])
+    assert result['message'] == 'Removed User from the Chat Group'
+    pass
