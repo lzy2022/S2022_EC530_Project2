@@ -9,14 +9,11 @@
     - README.md
 #### Code 
     - DB
-
-      Database back-ups of the project
+        Database back-ups of the project
     - UnitTests
-      
-      UnitTests folder contains the Github Action tests for the project
+        UnitTests folder contains the Github Action tests for the project
     - UnitTests_Online
-      
-      Tests in UnitTests_Online need to set up a remote sever
+        Tests in UnitTests_Online need to set up a remote sever
     - RESTfulFlask_API.py
     - db_info,py
     - db_setup.py
