@@ -28,9 +28,8 @@ jobs:
 
       - name: Test with pytest
         run: |
-          cd ./Code
-          chmod +x RESTfulFlask_API.py
-          ./RESTfulFlask_API.py ./DB/Project_2.db
-          cd ./UnitTests
+          cd ./Code/UnitTests
+          ./db_setup.py Project_2_test.db
+          pytest 
           cd ..
           cd ..
