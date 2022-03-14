@@ -156,5 +156,7 @@ For example, to create a new user with name [First Last], birth date [1/1/1000] 
         response = requests.get(BASE + "moduleFunction/Administrative/Add User", {'u_id': 1, 'pw': 'admin'
                                                                                         ,'para': ['First', 'Last', 1000, 1, 1, 'PW1']})
                                                                                 
+To access the function [Add User] in module [Administrative], we need a user account with role [Admin], in the example I use the default admin account with user_id = 1, pw = 'admin'. 'para' contains the parameters passed to the function [Add User] and create a new account.
+
 All the available functions are implemented in S2022_EC530_Project2/Code/module_func.py, fowlloing are the module/function names and the required parameters for each function. 
                                               
