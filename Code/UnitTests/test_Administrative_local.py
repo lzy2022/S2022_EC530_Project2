@@ -13,7 +13,8 @@ db_addr = './Project_2_test.db'
 def test_add_user():
     db_ac = DB_acc_info(db_addr)
     db_ac.user_login(1, 'admin')
-    
+    result = db_ac.run_module_func('Administrative', 'Add User', ['A', 'B', 0, 0 ,0 , 'PW1'])
+    assert result['message'] == 'New User Added'
     pass
 
 def test_change_role():
