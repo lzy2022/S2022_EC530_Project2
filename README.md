@@ -62,6 +62,23 @@ The framework of the database contains the all the charts & basic infomations to
         Contains module_id and module_name of the modules, now supporting [Administrative], [Device] and [Chat]
 ### role_module:
         Log different roles' accessibility to each module 
+### role_module_func:
+
+### device:
+
+### device_maker:
+
+### device_parameter:
+
+### device_user:
+
+### record:
+
+### record_entries:
+
+### chat_group:
+
+### chat_msg:
         
      
         
