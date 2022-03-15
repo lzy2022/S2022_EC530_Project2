@@ -212,7 +212,7 @@ Request Formate:
                                                                                         
 ### Device Module:
 #### 1. moduleFunction/Device/Add Device
-This function would create a new device information in the database. The created device would contains [device_id](auto-assigned), [device_name], [maker_name] and [state]. A new device would have no available parameter as default. To add parameter to the device, use the function [moduleFunction/Device/Add Device Parameter]. A device could have more than 1 parameter
+This function would create a new device information in the database. The created device would contains [device_id](auto-assigned), [device_name], [maker_name] and [state]. A new device would have no available parameter as default. To add parameter to the device, use the function [moduleFunction/Device/Add Device Parameter]. A device could have more than 1 parameter.
 
 Accessible by the following roles:
 
@@ -234,4 +234,95 @@ Accessible by the following roles:
 Request Formate:
 
         response = requests.get(BASE + "moduleFunction/Device/Get Device List", {'u_id': [your_account_id], 'pw': [your_account_pw]
-                                                                                        ,'para': []})                                                                                        
+                                                                                        ,'para': []})   
+
+#### 3. moduleFunction/Device/Add Device Parameter
+This function would add a new parameter to an existing device in terms of [parameter_name] & [parameter_unit]. Each device may have more than 1 parameter 
+
+Accessible by the following roles:
+
+        Admin
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Device/Add Device Parameter", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': [[parameter_name], [parameter_unit]]})  
+
+#### 4. moduleFunction/Device/Check Device Parameter
+This function would return the list of parameters and units corresponding a single device (refering to the device using [device_id]). Front-end could use the list of parameters to a generate report chart for the user to fill.
+
+Accessible by the following roles:
+
+        ALL ROLES
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Device/Check Device Parameter", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': [[device_id]]})
+
+#### 5. moduleFunction/Device/Clear Device Parameter
+This function would clear all the parameters currently assigned to the device. User can clear all the current parameters and assign new ones to the device.
+
+Accessible by the following roles:
+
+        Admin
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Device/Check Device Parameter", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': [[device_id]]})
+
+#### 6. moduleFunction/Device/Assign Device
+This function would assign the device to a user. User can upload test report only with the devices they have access to. A User can be assigned more than 1 device and each device can be assigned to more than 1 user.
+
+Accessible by the following roles:
+
+        Admin
+        Doctor
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Device/Check Device Parameter", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': [[device_id], [assigning_user_id], [text_comment]]})
+
+#### 7. moduleFunction/Device/Upload Test Record
+This function would upload a test record from a corresponding user and device. Each entry in the record contains [parameter_name], [data] and [parameter_unit]. This function would check the available parameters of the device and log only the appropriate parameters into the data base.
+
+[record] is a python dictionary object and need to be dumped using jason.dumps(). Each entry in the record. Names of the parameter must match the available parameters of the device, or else the entry would be recognized as inappropriate and ignored
+
+        record = json.dumps({parameter_1: data_1, parameter_2: data_2, ...})
+
+Accessible by the following roles:
+
+        Patient
+        Doctor
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Device/Upload Test Record", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': [[user_id], [device_id], [record], [text_comment]]})
+                                                                                        
+#### 7. moduleFunction/Device/View Patient Test Records
+This function would return a list of test records corresponding to a [user_id]. Each record includes [device_id], [user_id], a list of record entries, and upload time. Each record entry contains [parameter_name], [data] and [parameter_unit].
+
+Accessible by the following roles:
+
+        Admin
+        Doctor
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Device/View Patient Test Records", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': [[assigning_user_id]]})
+
+#### 7. moduleFunction/Device/View Your Test Records
+This function would return a list of test records corresponding to the current user. Each record includes [device_id], [user_id], a list of record entries, and upload time. Each record entry contains [parameter_name], [data] and [parameter_unit].
+
+Accessible by the following roles:
+
+        Patient
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Device/View Patient Test Records", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': []})
