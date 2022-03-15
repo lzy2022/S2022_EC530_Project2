@@ -165,8 +165,10 @@ All the available functions are implemented in S2022_EC530_Project2/Code/module_
 This function would create a new user account with the given parametes.
 
 Accessible by the following roles:
+
         Admin
         
 Request Formate:
+
         response = requests.get(BASE + "moduleFunction/Administrative/Add User", {'u_id': 1, 'pw': 'admin'
                                                                                         ,'para': ['First', 'Last',          1000, 1, 1, 'PW1']})
