@@ -182,5 +182,5 @@ Accessible by the following roles:
         
 Request Formate:
 
-        response = requests.get(BASE + "moduleFunction/Administrative/Add User", {'u_id': [your_account_id], 'pw': [your_account_pw]
-                                                                                        ,'para': [[New_First_name], [New_last_name], [New_birthdate_y], [New_birthdate_m], [New_birthdate_d], [New_pass_word]]})                                                                                        
+        response = requests.get(BASE + "moduleFunction/Administrative/Change User Role", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': [[user_id_assigning], [role_name]]})                                                                                        
