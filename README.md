@@ -161,8 +161,8 @@ To access the function [Add User] in module [Administrative], we need a user acc
 All the available functions are implemented in S2022_EC530_Project2/Code/module_func.py, fowlloing are the module/function names and the required parameters for each function. Accessibility of different roles to the functions can be modified using the [role_module_func] table in the database. 
                                               
 ### Administrative Module:
-#### moduleFunction/Administrative/Add User
-This function would create a new user account with the given parametes. The new account created would have no role information by default. To assign role information to the new account, use the function [moduleFunction/Administrative/Change User Role]
+#### 1. moduleFunction/Administrative/Add User
+This function would create a new user account with the given parametes. The new account created would have no role information by default. To assign role information to the new account, use the function [moduleFunction/Administrative/Change User Role]. New account would be automatically assigned a user_id. To view the new user_id of the account created, use the function [moduleFunction/Administrative/Get User List].
 
 Accessible by the following roles:
 
@@ -172,3 +172,15 @@ Request Formate:
 
         response = requests.get(BASE + "moduleFunction/Administrative/Add User", {'u_id': [your_account_id], 'pw': [your_account_pw]
                                                                                         ,'para': [[New_First_name], [New_last_name], [New_birthdate_y], [New_birthdate_m], [New_birthdate_d], [New_pass_word]]})
+                                                                                        
+#### 2. moduleFunction/Administrative/Change User Role
+This function would add a new role to an existing user account. Now supporting 4 possible roles: [Admin], [Doctor], [Nurse], [Patient]. 
+
+Accessible by the following roles:
+
+        Admin
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Administrative/Add User", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': [[New_First_name], [New_last_name], [New_birthdate_y], [New_birthdate_m], [New_birthdate_d], [New_pass_word]]})                                                                                        
