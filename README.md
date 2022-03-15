@@ -206,6 +206,6 @@ Accessible by the following roles:
         
 Request Formate:
 
-        response = requests.get(BASE + "moduleFunction/Administrative/Delete User Info", {'u_id': [your_account_id], 'pw': [your_account_pw]
+        response = requests.get(BASE + "moduleFunction/Administrative/Get User List", {'u_id': [your_account_id], 'pw': [your_account_pw]
                                                                                         ,'para': []})
                                                                                         
