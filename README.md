@@ -209,3 +209,16 @@ Request Formate:
         response = requests.get(BASE + "moduleFunction/Administrative/Get User List", {'u_id': [your_account_id], 'pw': [your_account_pw]
                                                                                         ,'para': []})
                                                                                         
+                                                                                        
+### Device Module:
+#### 1. moduleFunction/Device/Add Device
+This function would create a new device information in the database. The created device would contains [device_id](auto-assigned), [device_name], [maker_name] and [state]. A new device would have no available parameter as default. To add parameter to the device, use the function [moduleFunction/Device/Add Device Parameter]. A device could have more than 1 parameter
+
+Accessible by the following roles:
+
+        Admin
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Device/Add Device", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': [[device_name], [maker_name], [state]]})
