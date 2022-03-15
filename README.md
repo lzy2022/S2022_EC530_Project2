@@ -162,7 +162,7 @@ All the available functions are implemented in S2022_EC530_Project2/Code/module_
                                               
 ### Administrative Module:
 #### moduleFunction/Administrative/Add User
-This function would create a new user account with the given parametes.
+This function would create a new user account with the given parametes. The new account created would have no role information by default. To assign role information to the new account, use the function [moduleFunction/Administrative/Change User Role]
 
 Accessible by the following roles:
 
@@ -170,5 +170,5 @@ Accessible by the following roles:
         
 Request Formate:
 
-        response = requests.get(BASE + "moduleFunction/Administrative/Add User", {'u_id': 1, 'pw': 'admin'
-                                                                                        ,'para': ['First', 'Last',          1000, 1, 1, 'PW1']})
+        response = requests.get(BASE + "moduleFunction/Administrative/Add User", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': [[New_First_name], [New_last_name], [New_birthdate_y], [New_birthdate_m], [New_birthdate_d], [New_pass_word]]})
