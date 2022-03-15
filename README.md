@@ -302,7 +302,7 @@ Request Formate:
         response = requests.get(BASE + "moduleFunction/Device/Upload Test Record", {'u_id': [your_account_id], 'pw': [your_account_pw]
                                                                                         ,'para': [[user_id], [device_id], [record], [text_comment]]})
                                                                                         
-#### 7. moduleFunction/Device/View Patient Test Records
+#### 8. moduleFunction/Device/View Patient Test Records
 This function would return a list of test records corresponding to a [user_id]. Each record includes [device_id], [user_id], a list of record entries, and upload time. Each record entry contains [parameter_name], [data] and [parameter_unit].
 
 Accessible by the following roles:
@@ -315,7 +315,7 @@ Request Formate:
         response = requests.get(BASE + "moduleFunction/Device/View Patient Test Records", {'u_id': [your_account_id], 'pw': [your_account_pw]
                                                                                         ,'para': [[assigning_user_id]]})
 
-#### 7. moduleFunction/Device/View Your Test Records
+#### 9. moduleFunction/Device/View Your Test Records
 This function would return a list of test records corresponding to the current user. Each record includes [device_id], [user_id], a list of record entries, and upload time. Each record entry contains [parameter_name], [data] and [parameter_unit].
 
 Accessible by the following roles:
@@ -326,3 +326,76 @@ Request Formate:
 
         response = requests.get(BASE + "moduleFunction/Device/View Patient Test Records", {'u_id': [your_account_id], 'pw': [your_account_pw]
                                                                                         ,'para': []})
+                                                                                        
+### Chat Module:
+#### 1. moduleFunction/Chat/Create Chat Group
+This function would create a new chat group with specified [group_name] and [group_id] (group_id need to be unique). A new chat groupe would include only the current user (creater of the group). To add or remove users, use the function [moduleFunction/Chat/Add User to Chat Group] and [moduleFunction/Chat/Remove User from Chat Group]
+
+Accessible by the following roles:
+
+        ALL ROLES
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Chat/Create Chat Group", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': [[group_name], [group_id]]})
+                                                                                        
+#### 2. moduleFunction/Chat/Add User to Chat Group
+This function would assgin user access to a specific group. Only user who is currently in the group can add another user into the group (refered using [user_id] and [group_id]). Having access to a group means the user can send/receive message or add/remove users in the group.
+
+Accessible by the following roles:
+
+        ALL ROLES
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Chat/Create Chat Group", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': [[user_id_adding], [group_id]]})
+                                                                                        
+#### 3. moduleFunction/Chat/Remove User from Chat Group
+This function would remove a specific user from the caht group. Only user who is currently in the group can remove user from the group (refered using [user_id] and [group_id]).
+
+Accessible by the following roles:
+
+        ALL ROLES
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Chat/Create Chat Group", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': [[user_id_removing], [group_id]]})
+                                                                                        
+#### 4. moduleFunction/Chat/Send Message
+This function would send text message to a chat group or a specific user (using [user_id] and [group_id]). If the user don't want this message being sent to any user (or any group), use [-1] for the [user_id] (or [group_id]). But there must be at least one valid receiver in [user_id] and [group_id]. If the message is sent to a group, the sender must be a member of that group.
+
+Accessible by the following roles:
+
+        ALL ROLES
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Chat/Send Message", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': [[user_id_sending], [group_id_sending], [text_message]]})
+
+#### 6. moduleFunction/Chat/View Your Message
+This function would return a list of chat message sent to the current user (only the individual message, not group chat). Each message contains [sender_user_id], [receiver_user_id], [receiving_group_id], [time], [text_content]
+
+Accessible by the following roles:
+
+        ALL ROLES
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Chat/View Your Message", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': []})
+                                                                                        
+#### 7. moduleFunction/Chat/View Group Message
+This function would return a list of chat message sent to the specific group chat. Each message contains [sender_user_id], [receiver_user_id], [receiving_group_id], [time], [text_content]. Users must have access to the group before viewing group messages.
+
+Accessible by the following roles:
+
+        ALL ROLES
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Chat/View Group Message", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': [[group_id_viewing]]})
