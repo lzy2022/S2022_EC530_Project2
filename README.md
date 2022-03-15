@@ -222,3 +222,16 @@ Request Formate:
 
         response = requests.get(BASE + "moduleFunction/Device/Add Device", {'u_id': [your_account_id], 'pw': [your_account_pw]
                                                                                         ,'para': [[device_name], [maker_name], [state]]})
+                                                                                        
+#### 2. moduleFunction/Device/Get Device List
+This function would return a list containing all the device_name and the corresponding device_id. Front-end can refer to the device list and implement a search function to look for specific device and it's device_id. 
+
+
+Accessible by the following roles:
+
+        ALL ROLES
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Device/Get Device List", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': []})                                                                                        
