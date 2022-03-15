@@ -183,4 +183,29 @@ Accessible by the following roles:
 Request Formate:
 
         response = requests.get(BASE + "moduleFunction/Administrative/Change User Role", {'u_id': [your_account_id], 'pw': [your_account_pw]
-                                                                                        ,'para': [[user_id_assigning], [role_name]]})                                                                                        
+                                                                                        ,'para': [[user_id_assigning], [role_name]]})
+ 
+#### 3. moduleFunction/Administrative/Delete User Info
+This function would delete an existing user account. All the related information including device record and user_id would be removed from the database (group messages would be kept)
+
+Accessible by the following roles:
+
+        Admin
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Administrative/Delete User Info", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': [[user_id_deleting]]})
+
+#### 4. moduleFunction/Administrative/Get User List
+This function would return a list of users as response, including all the user_id and the corresponding first/last names and role information. Front-end can refer to the user list and implement a search function to look for specific user and his/her user_id. 
+
+Accessible by the following roles:
+
+        ALL ROLES
+        
+Request Formate:
+
+        response = requests.get(BASE + "moduleFunction/Administrative/Delete User Info", {'u_id': [your_account_id], 'pw': [your_account_pw]
+                                                                                        ,'para': []})
+                                                                                        
