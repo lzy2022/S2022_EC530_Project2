@@ -8,11 +8,11 @@
  
  [Database Structure](#Database-Structure)
  
- [Functions of RESTful API & Request Formates](#Functions-of-RESTful-API-&-Request-Formates)
+ [Functions of RESTful API & Request Formates](#Functions-of-RESTful-API-and-Request-Formates)
  
- [----Login Request](#1.-Login-Request)
+ [----Login Request](#Login-Request)
  
- [----Function Request](#2.-Function-Request)
+ [----Function Request](#Function-Request)
  
  [--------Administrative Module](#Administrative-Module)
  
@@ -101,13 +101,13 @@ The framework of the database contains the all the charts & basic infomations to
 #### chat_msg:
         Log chat messages (sender_user_id, receiver_user_id, receiver_group_id)
         
-## Functions of RESTful API & Request Formates
+## Functions of RESTful API and Request Formates
 The following parts contain formates and functions that can be called from the front-end side using http requests. Users need to import the following python modules:
 
         import requests
         import json
         
-### 1. Login Request
+### Login Request
 Back-end RESTful API implimentation of the Login Request:
 
         login_args = reqparse.RequestParser()
@@ -139,7 +139,7 @@ http login request can be done using the following request:
         
 [response] containse the essential information for the front-end to intialize the local session, including user's first/last name, role, accessibility to modules and functions.
 
-### 2. Function Request
+### Function Request
 Back-end RESTful API implimentation of the function requests (interact with the Database):
 
         m_f_args = reqparse.RequestParser()
