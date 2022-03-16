@@ -109,7 +109,7 @@ The following parts contain formates and functions that can be called from the f
         import requests
         import json
         
-### 1. Login Request:
+### 1. Login Request
 Back-end RESTful API implimentation of the Login Request:
 
         login_args = reqparse.RequestParser()
@@ -141,7 +141,7 @@ http login request can be done using the following request:
         
 [response] containse the essential information for the front-end to intialize the local session, including user's first/last name, role, accessibility to modules and functions.
 
-### 2. Function Request:
+### 2. Function Request
 Back-end RESTful API implimentation of the function requests (interact with the Database):
 
         m_f_args = reqparse.RequestParser()
@@ -182,7 +182,7 @@ To access the function [Add User] in module [Administrative], we need a user acc
 
 All the available functions are implemented in S2022_EC530_Project2/Code/module_func.py, fowlloing are the module/function names and the required parameters for each function. Accessibility of different roles to the functions can be modified using the [role_module_func] table in the database. 
                                               
-### Administrative Module:
+### Administrative Module
 #### 1. moduleFunction/Administrative/Add User
 This function would create a new user account with the given parametes. The new account created would have no role information by default. To assign role information to the new account, use the function [moduleFunction/Administrative/Change User Role]. New account would be automatically assigned a user_id. To view the new user_id of the account created, use the function [moduleFunction/Administrative/Get User List].
 
@@ -232,7 +232,7 @@ Request Formate:
                                                                                         ,'para': []})
                                                                                         
                                                                                         
-### Device Module:
+### Device Module
 #### 1. moduleFunction/Device/Add Device
 This function would create a new device information in the database. The created device would contains [device_id](auto-assigned), [device_name], [maker_name] and [state]. A new device would have no available parameter as default. To add parameter to the device, use the function [moduleFunction/Device/Add Device Parameter]. A device could have more than 1 parameter.
 
@@ -349,7 +349,7 @@ Request Formate:
         response = requests.get(BASE + "moduleFunction/Device/View Patient Test Records", {'u_id': [your_account_id], 'pw': [your_account_pw]
                                                                                         ,'para': []})
                                                                                         
-### Chat Module:
+### Chat Module
 #### 1. moduleFunction/Chat/Create Chat Group
 This function would create a new chat group with specified [group_name] and [group_id] (group_id need to be unique). A new chat groupe would include only the current user (creater of the group). To add or remove users, use the function [moduleFunction/Chat/Add User to Chat Group] and [moduleFunction/Chat/Remove User from Chat Group]
 
