@@ -8,8 +8,6 @@
  
  [Database Structure](#Database-Structure)
  
- [Database Structure](#Database-Structure)
- 
  [Functions of RESTful API & Request Formates](#Functions-of-RESTful-API-&-Request-Formates)
  
  [----Login Request](#Login-Request)
