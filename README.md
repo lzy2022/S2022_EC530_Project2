@@ -1,6 +1,23 @@
 # S2022_EC530_Project2
 
- [here](#Github-Structure)
+ [Github Structure](#Github-Structure)
+ 
+ [Api File Structure](#Api-File-Structure)
+ 
+ [Setting up Back-end Sever](#Setting-up-Back-end-Sever)
+ 
+ [Database Structure](#Database-Structure)
+ 
+ [Database Structure](#Database-Structure)
+ 
+ [Functions of RESTful API & Request Formates](#Functions-of-RESTful-API-&-Request-Formates)
+ 
+     [Login Request](#Login-Request)
+     
+     [Function Request](#Function-Request)
+         [Administrative Module](#Administrative-Module)
+         [Device Module](#Device-Module)
+         [Chat Module](#Chat-Module)
 
 ## Github Structure
 ### Top Level
