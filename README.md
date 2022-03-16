@@ -447,7 +447,7 @@ The first step is to download the database framework using the module [db_setup.
  Use the default admin account to create a new device (device name = 'Test_Device_01', maker name = 'Maker01',    state = 1(available)). Then check the device list.
   ![alt text](https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Images/EX_3.PNG)
  Add 2 parameters to the new device (Weight:kg and Blood_Pressure:mmHg). Then check the available parameters of the new device.
-   ![alt text](https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Images/EX3__2.PNG)
+   ![alt text](https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Images/EX_3_2.PNG)
  ### Assign Device and Upload Records
  
  ### Send Message to Groups and Individuals
