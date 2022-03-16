@@ -69,7 +69,7 @@ The framework of the database contains the all the charts & basic infomations to
         name(f&l): Admin Admin
         role: Admin
         
-## Database Structure (Tables)
+## Database Structure
 #### users:
         Contains user_id, user's first/last name, birth date, account creating date
 #### user_pw:
