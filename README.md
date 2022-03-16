@@ -10,9 +10,9 @@
  
  [Functions of RESTful API & Request Formates](#Functions-of-RESTful-API-&-Request-Formates)
  
- [----Login Request](#1.Login-Request)
+ [----Login Request](#1.-Login-Request)
  
- [----Function Request](#2.Function-Request)
+ [----Function Request](#2.-Function-Request)
  
  [--------Administrative Module](#Administrative-Module)
  
