@@ -431,3 +431,7 @@ Request Formate:
 
         response = requests.get(BASE + "moduleFunction/Chat/View Group Message", {'u_id': [your_account_id], 'pw': [your_account_pw]
                                                                                         ,'para': [[group_id_viewing]]})
+                                                                                        
+## Session Examples
+### Back-end Setup
+![alt text](http://url/to/img.png)
