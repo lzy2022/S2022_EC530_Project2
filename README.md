@@ -12,15 +12,15 @@
  
  [Functions of RESTful API & Request Formates](#Functions-of-RESTful-API-&-Request-Formates)
  
- [--Login Request](#Login-Request)
+ [    Login Request](#Login-Request)
  
- [--Function Request](#Function-Request)
+ [    Function Request](#Function-Request)
  
- [----Administrative Module](#Administrative-Module)
+ [        Administrative Module](#Administrative-Module)
  
- [----Device Module](#Device-Module)
+ [        Device Module](#Device-Module)
  
- [----Chat Module](#Chat-Module)
+ [        Chat Module](#Chat-Module)
 
 ## Github Structure
 ### Top Level
