@@ -434,4 +434,5 @@ Request Formate:
                                                                                         
 ## Session Examples
 ### Back-end Setup
-![alt text](http://url/to/img.png)
+The example sets up a local sever and open the default python http port :5000, the address of the sever is http://127.0.0.1:5000/
+![alt text](https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Images/EX1.PNG)
