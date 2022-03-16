@@ -405,7 +405,6 @@ def call_func(db_addr, module_name, func_name, u_id, func_args):
     if module_name == 'Device' and func_name == 'Assign Device':
         return assign_device(db_addr, func_args[0], func_args[1], func_args[2])
     if module_name == 'Device' and func_name == 'Upload Test Record':
-        print(func_args)
         return add_record(db_addr, func_args[0], func_args[1], json.loads((func_args[2])), func_args[3])
     if module_name == 'Device' and func_name == 'View Patient Test Records':
         return get_user_record(db_addr, func_args[0])
