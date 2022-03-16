@@ -19,6 +19,18 @@
  [--------Device Module](#Device-Module)
  
  [--------Chat Module](#Chat-Module)
+ 
+ [Session Examples](#Session-Examples)
+ 
+ [----Back-end Setup](#Back-end-Setup)
+ 
+ [----Login & Add New Users](#Login-and-Add-New-Users)
+ 
+ [----Create Device and Assign Parameters](#Create-Device-and-Assign-Parameters)
+ 
+ [----Assign Device and Upload Records](#Assign-Device-and-Upload-Records)
+ 
+ [----Send Message to Groups and Individuals](#Send-Message-to-Groups-and-Individuals)
 
 ## Github Structure
 ### Top Level
