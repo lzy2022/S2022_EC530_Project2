@@ -449,5 +449,8 @@ The first step is to download the database framework using the module [db_setup.
  Add 2 parameters to the new device (Weight:kg and Blood_Pressure:mmHg). Then check the available parameters of the new device.
    ![alt text](https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Images/EX_3_2.PNG)
  ### Assign Device and Upload Records
- 
+ Use the default admin account to assign the new device to a patient (user_id = 2). User the patient's account to upload a test record with the new device (device_id = 1). Record entries are {Blood_Pressure: 100, Weight: 70}.
+ ![alt text](https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Images/EX_4.PNG)
+ Use the patient account to view the newly uploaded record
+ ![alt text](https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Images/EX_4_2.PNG)
  ### Send Message to Groups and Individuals
