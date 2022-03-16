@@ -141,8 +141,8 @@ http login request can be done using the following request:
         
 [response] containse the essential information for the front-end to intialize the local session, including user's first/last name, role, accessibility to modules and functions.
 
-### 2. Function Request (Interact with the Database):
-Back-end RESTful API implimentation of the function requests:
+### 2. Function Request:
+Back-end RESTful API implimentation of the function requests (interact with the Database):
 
         m_f_args = reqparse.RequestParser()
         m_f_args.add_argument("u_id", type=int, help="Need user ID", required=True)
