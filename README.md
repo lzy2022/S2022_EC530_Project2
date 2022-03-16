@@ -301,7 +301,7 @@ Accessible by the following roles:
         
 Request Formate:
 
-        response = requests.get(BASE + "moduleFunction/Device/Check Device Parameter", {'u_id': [your_account_id], 'pw': [your_account_pw]
+        response = requests.get(BASE + "moduleFunction/Device/Clear Device Parameter", {'u_id': [your_account_id], 'pw': [your_account_pw]
                                                                                         ,'para': [[device_id]]})
 
 #### 6. moduleFunction/Device/Assign Device
@@ -314,7 +314,7 @@ Accessible by the following roles:
         
 Request Formate:
 
-        response = requests.get(BASE + "moduleFunction/Device/Check Device Parameter", {'u_id': [your_account_id], 'pw': [your_account_pw]
+        response = requests.get(BASE + "moduleFunction/Device/Assign Device", {'u_id': [your_account_id], 'pw': [your_account_pw]
                                                                                         ,'para': [[device_id], [assigning_user_id], [text_comment]]})
 
 #### 7. moduleFunction/Device/Upload Test Record
@@ -356,7 +356,7 @@ Accessible by the following roles:
         
 Request Formate:
 
-        response = requests.get(BASE + "moduleFunction/Device/View Patient Test Records", {'u_id': [your_account_id], 'pw': [your_account_pw]
+        response = requests.get(BASE + "moduleFunction/Device/View Your Test Records", {'u_id': [your_account_id], 'pw': [your_account_pw]
                                                                                         ,'para': []})
                                                                                         
 ### Chat Module
@@ -381,7 +381,7 @@ Accessible by the following roles:
         
 Request Formate:
 
-        response = requests.get(BASE + "moduleFunction/Chat/Create Chat Group", {'u_id': [your_account_id], 'pw': [your_account_pw]
+        response = requests.get(BASE + "moduleFunction/Chat/Add User to Chat Group", {'u_id': [your_account_id], 'pw': [your_account_pw]
                                                                                         ,'para': [[user_id_adding], [group_id]]})
                                                                                         
 #### 3. moduleFunction/Chat/Remove User from Chat Group
@@ -393,7 +393,7 @@ Accessible by the following roles:
         
 Request Formate:
 
-        response = requests.get(BASE + "moduleFunction/Chat/Create Chat Group", {'u_id': [your_account_id], 'pw': [your_account_pw]
+        response = requests.get(BASE + "moduleFunction/Chat/Remove User from Chat Group", {'u_id': [your_account_id], 'pw': [your_account_pw]
                                                                                         ,'para': [[user_id_removing], [group_id]]})
                                                                                         
 #### 4. moduleFunction/Chat/Send Message
