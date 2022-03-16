@@ -454,3 +454,7 @@ The first step is to download the database framework using the module [db_setup.
  Use the patient account to view the newly uploaded record
  ![alt text](https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Images/EX_4_2.PNG)
  ### Send Message to Groups and Individuals
+ Use the patient account to create a new chatgroup (group name = 'New Group Chat', group id = 123). The add the default admin user to the group (user_id = 1). Use the patient account to send an 'Individual Msg' directly to admin user and send a 'Group Msg' to 'New Group Chat'.
+ ![alt text](https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Images/EX_5.PNG)
+ Login as admin user and view both individual chat and group chat
+  ![alt text](https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Images/EX_5_2.PNG)
