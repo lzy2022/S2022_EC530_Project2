@@ -437,8 +437,11 @@ Request Formate:
 The first step is to download the database framework using the module [db_setup.py], the downloaded framework is named [Example_db.db]. The example then sets up a local sever connected to []Example_db.db and open the default python http port :5000, the address of the sever is http://127.0.0.1:5000/
 ![alt text](https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Images/EX1.PNG)
 
-
  ### Login and Add New Users
+ Login using the default admin account (user_id = 1, pw = admin). The response message would show the user's information and his accessibilty to each module/function. 
+ ![alt text](https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Images/EX2.PNG)
+ Add a new user (First name = 'First', Last name = 'Last', birth date = 1000/1/1, password = 'PW1'). Check the user list and login using the new account
+  ![alt text](https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Images/EX2_2.PNG)
  
  ### Create Device and Assign Parameters
  
