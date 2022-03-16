@@ -434,5 +434,14 @@ Request Formate:
                                                                                         
 ## Session Examples
 ### Back-end Setup
-The example sets up a local sever and open the default python http port :5000, the address of the sever is http://127.0.0.1:5000/
+The first step is to download the database framework using the module [db_setup.py], the downloaded framework is named [Example_db.db]. The example then sets up a local sever connected to []Example_db.db and open the default python http port :5000, the address of the sever is http://127.0.0.1:5000/
 ![alt text](https://github.com/lzy2022/S2022_EC530_Project2/raw/main/Images/EX1.PNG)
+
+
+ ### Login and Add New Users
+ 
+ ### Create Device and Assign Parameters
+ 
+ ### Assign Device and Upload Records
+ 
+ ### Send Message to Groups and Individuals
